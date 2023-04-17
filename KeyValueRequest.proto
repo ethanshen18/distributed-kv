@@ -1,0 +1,23 @@
+syntax = "proto3";
+option java_package = "ca.NetSysLab.ProtocolBuffers";
+option java_outer_classname = "KeyValueRequest";
+
+message Put {
+    bytes key = 1;
+    bytes value = 2;
+    int32 version = 3;
+    int64 timestamp = 4;
+}
+
+message KVRequest {
+    uint32 command = 1;
+    optional bytes key = 2;
+    optional bytes value = 3;
+    optional int32 version = 4;
+    optional string clientAddress = 5;
+    optional int32 clientPort = 6;
+    optional int64 keyValueTimestamp = 7;
+    repeated int64 lastAliveTimestamps = 8;
+    optional int32 chainCount = 9;
+    repeated Put batchPut = 10;
+}
